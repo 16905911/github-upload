@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN" "http://struts.apache.org/dtds/struts-config_1_2.dtd">
+
+<struts-config>
+	<data-sources />
+	<form-beans>
+		<form-bean name="managerForm" type="com.oes.actionForm.ManagerForm" />
+		<form-bean name="studentForm" type="com.oes.actionForm.StudentForm" />
+		<form-bean name="lessonForm" type="com.oes.actionForm.LessonForm" />
+		<form-bean name="taoTiForm" type="com.oes.actionForm.TaoTiForm" />
+		<form-bean name="questionsForm" type="com.oes.actionForm.QuestionsForm" />
+		<form-bean name="stuResultForm" type="com.oes.actionForm.StuResultForm" />
+		<form-bean name="queryResultIfForm" type="com.oes.actionForm.QueryResultIfForm" />
+		<form-bean name="questionForm" type="com.oes.actionForm.QuestionForm" />
+	</form-beans>
+	<global-exceptions />
+	<global-forwards />
+	<action-mappings>
+		<!-- 管理员 -->
+		<action name="managerForm" path="/manage/manager" scope="request"
+			type="com.oes.action.Manager" validate="true">
+			<forward name="managerLoginok" path="/manage/notice.jsp" />
+			<!-- 在xml配置文件中&要转义为&amp;才能识别  -->
+			<forward name="managerQuery" path="/manage/manager.jsp" />
+			<forward name="managerAdd" path="/manage/manager_ok.jsp?para=1" />
+			<forward name="pwdQueryModify" path="/manage/pwd_Modify.jsp" />
+			<forward name="pwdModify" path="/manage/pwd_ok.jsp" />
+			<forward name="managerDel" path="/manage/manager_ok.jsp?para=3" />
+			<forward name="modifypwd" path="/manage/manager.do?action=managerQuery" />
+			<forward name="error" path="/manage/error.jsp" />
+		</action>
+		<!-- 考生 -->
+		<action name="studentForm" path="/manage/student" scope="request"
+			type="com.oes.action.Student" validate="true">
+			<forward name="studentLoginok" path="/default.jsp" />
+			<forward name="studentQuery" path="/manage/student.jsp" />
+			<forward name="studentAdd" path="/student_ok.jsp" />
+			<forward name="modifyQuery" path="/student_Modify.jsp" />
+			<forward name="studentModify" path="/studentM_ok.jsp" />
+			<forward name="studentDel" path="/manage/student_ok.jsp?para=3" />
+			<forward name="seekPwd1" path="/seekPwd1.jsp" />
+			<forward name="seekPwd2" path="/seekPwd2.jsp" />
+			<forward name="error" path="/manage/error.jsp" />
+		</action>
+		<!-- 开始考试 -->
+		<action name="questionsForm" path="/manage/startExam" scope="session"
+			type="com.oes.action.StartExam">
+			<forward name="testPaper" path="/startExam.jsp" />
+			<forward name="testPaper1" path="/Examanswer.jsp" />
+			<forward name="testPaper2" path="/manage/showExam.jsp" />
+			<forward name="dealNull" path="/dealNull.jsp" />
+			<forward name="submitTestPaperok" path="/submitTestPaperok.jsp" />
+			<forward name="showStartTime" path="/showStartTime.jsp" />
+			<forward name="showRemainTime" path="/showRemainTime.jsp" />
+			<forward name="error" path="/error.jsp" />
+			<forward name="errorback" path="/manage/errorback.jsp" />
+		</action>
+		<!-- 考试科目 -->
+		<action name="lessonForm" path="/manage/lesson" scope="request"
+			type="com.oes.action.Lesson" validate="true">
+			<forward name="lessonQuery" path="/manage/lesson.jsp" />
+			<forward name="lessonAddQuery" path="/manage/lesson_Add.jsp" />
+			<forward name="lessonAdd" path="/manage/lesson_ok.jsp?para=1" />
+			<forward name="lessonDel" path="/manage/lesson_ok.jsp?para=3" />
+			<forward name="lessonModify" path="/manage/lesson_ok.jsp?para=2" />
+			<forward name="lessonModifyQuery" path="/manage/lesson_Modify.jsp" />
+			<forward name="error" path="/manage/error.jsp" />
+			<forward name="selectLesson" path="/selectLesson.jsp" />
+			<forward name="noenLesson" path="/noenLesson.jsp" />
+			<forward name="ready" path="/ready.jsp" />
+		</action>
+		<!-- 试卷 -->
+		<action name="taoTiForm" path="/manage/taoTi" scope="request"
+			type="com.oes.action.TaoTi" validate="true">
+			<forward name="taoTiQuery" path="/manage/taoTi.jsp" />
+			<forward name="taoTiAddQuery" path="/manage/taoTi_Add.jsp" />
+			<forward name="taoTiAdd" path="/manage/taoTi_ok.jsp?para=1" />
+			<forward name="taoTiDel" path="/manage/taoTi_ok.jsp?para=3" />
+			<forward name="taoTiModifyQuery" path="/manage/taoTi_Modify.jsp" />
+			<forward name="taoTiModify" path="/manage/taoTi_ok.jsp?para=2" />
+			<forward name="error" path="/manage/error.jsp" />
+		</action>
+		<!-- 考试题目 -->
+		<action name="questionsForm" path="/manage/questions" scope="request"
+			type="com.oes.action.Questions" validate="true">
+			<forward name="questionsQuery" path="/manage/questions.jsp" />
+			<forward name="questionsAddQuery" path="/manage/questions_Add.jsp" />
+			<forward name="questionsAdd" path="/manage/questions_ok.jsp?para=1" />
+			<forward name="questionsDel" path="/manage/questions_ok.jsp?para=3" />
+			<forward name="questionsModifyQuery" path="/manage/questions_Modify.jsp" />
+			<forward name="questionsModify" path="/manage/questions_ok.jsp?para=2" />
+			<forward name="queryTaoTi" path="/manage/selTaoTi.jsp" />
+			<forward name="setSMOption" path="/manage/setSMOption.jsp" />
+			<forward name="error" path="/manage/error.jsp" />
+		</action>
+		<!-- 考生成绩 -->
+		<action name="stuResultForm" path="/manage/stuResult" scope="request"
+			type="com.oes.action.StuResult" validate="true">
+			<forward name="stuResultQuery" path="/manage/main.jsp" />
+			<forward name="stuResultQueryS" path="/stuResultQuery.jsp" />
+			<forward name="error" path="/manage/error.jsp" />
+		</action>
+		<action name="queryResultIfForm" path="/manage/queryResultIf"
+			scope="session" type="com.oes.action.StuResult" validate="true">
+			<forward name="stuResultQuery" path="/manage/main.jsp" />
+			<forward name="error" path="/manage/error.jsp" />
+		</action>
+	</action-mappings>
+	<controller processorClass="com.oes.action.SelfRequestProcessor" />
+	<message-resources parameter="com.oes.struts.ApplicationResources" />
+</struts-config>
+
